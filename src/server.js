@@ -3,7 +3,8 @@ const http = require("http");
 const fs = require('fs').promises;
 
 // Constants
-const host = 'localhost';
+// const host = 'localhost';
+const host = '0.0.0.0'; // Listen to all network interfaces
 const port = 8000;
 
 // Files to serve

@@ -1,3 +1,4 @@
+// Returns true if val is a leap year and false otherwise
 function isLeapYear(val) {
     // Determine if val is a leap year
     if (val % 400 === 0) {
@@ -14,6 +15,8 @@ function isLeapYear(val) {
     }
 }
 
+
+// Modifies the element of outputId depending on if the inputId element number is a leap year
 function checkLeapYear() {
     // Selecting the input element and get its value 
     let inputVal = document.getElementById("inputId").value;

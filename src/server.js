@@ -6,21 +6,35 @@ const fs = require('fs').promises;
 const host = 'localhost';
 const port = 8000;
 
-let indexFile;
+// Files to serve
+let htmlFile;
+let cssFile;
+let jsFile;
 
 // Callback for sending data 
 const requestListener = function (req, res) {
-    res.setHeader("Content-Type", "text/html");
-    res.writeHead(200);
-    res.write(indexFile);
-    res.end()
+    // Choose which file to serve based on url, the browser will request each file separately 
+    switch (req.url) {
+        case "/style.css":
+            res.writeHead(200, { "Content-Type": "text/css" });
+            res.write(cssFile);
+            break;
+        case "/index.js":
+            res.writeHead(200, { "Content-Type": "text/js" });
+            res.write(jsFile);
+            break;
+        default:
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.write(htmlFile);
+    }
+    res.end();
 };
 
 
 // Read the HTML file
 fs.readFile(__dirname + "/index.html")
     .then(contents => {
-        indexFile = contents;
+        htmlFile = contents;
     })
     .catch(err => {
         console.error(`Could not read index.html file: ${err}`);
@@ -28,7 +42,29 @@ fs.readFile(__dirname + "/index.html")
     });
 
 
-// Luanch server
+// Read the CSS file
+fs.readFile(__dirname + "/style.css")
+    .then(contents => {
+        cssFile = contents;
+    })
+    .catch(err => {
+        console.error(`Could not read style.css file: ${err}`);
+        process.exit(1);
+    });
+
+
+// Read the JavaScript file
+fs.readFile(__dirname + "/index.js")
+    .then(contents => {
+        jsFile = contents;
+    })
+    .catch(err => {
+        console.error(`Could not read index.js file: ${err}`);
+        process.exit(1);
+    });
+
+
+// Launch server
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
     console.log(`Server is running on http://${host}:${port}`);

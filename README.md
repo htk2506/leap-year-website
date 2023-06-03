@@ -1,1 +1,2 @@
-# webserver-test
+# Leap Year Website
+A webserver for a simple [website](https://leap-year-checker.fly.dev/) that can determine if a given year is a leap year. The project is deployed as a Docker image using [Fly.io](https://fly.io/). I did this brief project to get hands-on experience with web deployment. 

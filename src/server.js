@@ -68,5 +68,6 @@ fs.readFile(__dirname + "/index.js")
 // Launch server
 const server = http.createServer(requestListener);
 server.listen(port, host, () => {
+    console.log(`Server for leap year checking website`)
     console.log(`Server is running on http://${host}:${port}`);
 });

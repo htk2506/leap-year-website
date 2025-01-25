@@ -5,7 +5,7 @@ const fs = require('fs').promises;
 // Constants
 // const host = 'localhost';
 const host = '0.0.0.0'; // Listen to all network interfaces
-const port = 8000;
+const port = process.env.PORT;
 
 // Files to serve
 let htmlFile;

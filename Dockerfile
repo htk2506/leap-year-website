@@ -4,6 +4,10 @@ WORKDIR /app
 
 COPY src ./
 
-EXPOSE 8000
+ARG PORT_ARG=8000
+
+ENV PORT=${PORT_ARG}
+
+EXPOSE ${PORT}
 
 CMD ["node", "server.js"]
